@@ -1,0 +1,24 @@
+# Set Docker base image;
+FROM node:14-alpine3.13
+
+RUN addgroup app && adduser -S -G app app
+
+USER app
+
+# Sets workdir;
+# All next commands will use /app as default path
+WORKDIR /app
+
+# Copy files;
+# from the current workdir (docker-images)
+# to WORKDIR (/app)
+COPY . .
+
+# Run commands in order;
+RUN npm install
+
+# Sets env variables
+ENV API_URL http://api.myapp.com/
+
+# Exposes ports
+EXPOSE 3000
