@@ -10,16 +10,20 @@ USER app
 # All next commands will use /app as default path
 WORKDIR /app
 
+COPY package*.json .
+
+# Run commands in order;
+RUN npm install
+
 # Copy files;
 # from the current workdir (docker-images)
 # to WORKDIR (/app)
 COPY . .
-
-# Run commands in order;
-RUN npm install
 
 # Sets env variables
 ENV API_URL http://api.myapp.com/
 
 # Exposes ports
 EXPOSE 3000
+
+CMD ["yarn", "start"]
