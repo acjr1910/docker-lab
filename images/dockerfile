@@ -10,6 +10,8 @@ USER app
 # All next commands will use /app as default path
 WORKDIR /app
 
+RUN mkdir data
+
 COPY package*.json .
 
 # Run commands in order;
